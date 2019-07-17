@@ -1,0 +1,37 @@
+server:
+  port: 8080
+  tomcat:
+    protocol-header: x-forwarded-proto
+#    protocol-header-https-value: https
+    remote-ip-header: x-forwarded-for
+  use:
+    forward-headers : true
+    
+
+info:
+  component: Zuul Server
+
+endpoints:
+  restart:
+    enabled: true
+  shutdown:
+    enabled: true
+  health:
+    sensitive: false
+
+zuul:
+  ignoredServices: "*"
+  routes:
+    books-service: 
+      path: /books/**
+      serviceId: books-service
+      
+books-service:
+  ribbon:
+    listOfServers:
+      - http://books:8080
+    
+
+#logging:
+#  level: 
+#    ROOT : DEBUG
