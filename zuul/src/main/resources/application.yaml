@@ -22,16 +22,17 @@ endpoints:
 zuul:
 #  ignoredServices: "*"
   routes:
-    book-service: 
+    books-service: 
       path: /books/**
-      serviceId: books-service
+      url: http://books:8080
+      #serviceId: books-service
       
-books-service:
-  ribbon:
-    listOfServers:
-      - http://books:8080
+#books-service:
+#  ribbon:
+#    listOfServers:
+#      - http://books:8080
     
 
-logging:
-  level: 
-    ROOT : DEBUG
+#logging:
+#  level: 
+#    ROOT : DEBUG
