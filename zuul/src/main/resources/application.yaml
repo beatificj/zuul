@@ -24,7 +24,8 @@ zuul:
   routes:
     books-service: 
       path: /books/**
-      serviceId: books-service
+      url: http://books:8080
+      #serviceId: books-service
       
 books-service:
   ribbon:
