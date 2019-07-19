@@ -23,10 +23,19 @@ zuul:
 #  ignoredServices: "*"
   routes:
     books-service: 
+      serviceId: books
       path: /books/**
-      url: http://books:8080
+      #url: http://books:8080
       #serviceId: books-service
-      
+
+backend:
+  ribbon:
+    eureka:
+      enabled: false
+    client:
+      enabled: true
+    ServerListRefreshInterval: 5000
+    
 #books-service:
 #  ribbon:
 #    listOfServers:
