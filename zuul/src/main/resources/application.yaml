@@ -19,12 +19,12 @@ endpoints:
   health:
     sensitive: false
 
-zuul:
+#zuul:
 #  ignoredServices: "*"
-  routes:
-    books-service: 
-      serviceId: books
-      path: /books/**
+#  routes:
+#    books-service: 
+#      serviceId: books
+#      path: /books/**
       #url: http://books:8080
       #serviceId: books-service
 
