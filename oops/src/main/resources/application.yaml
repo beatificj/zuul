@@ -2,3 +2,6 @@ server:
   port: 8080
   
     
+logging:
+  level: 
+    ROOT : DEBUG
