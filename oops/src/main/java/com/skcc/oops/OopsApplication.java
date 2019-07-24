@@ -2,10 +2,10 @@ package com.skcc.oops;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.openfeign.EnableOopsClients;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 
 
-@EnableOopsClients
+@EnableFeignClients
 @SpringBootApplication
 public class OopsApplication {
 
