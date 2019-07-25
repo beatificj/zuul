@@ -18,7 +18,7 @@ import org.springframework.beans.factory.support.AbstractBeanDefinition;
 import org.springframework.beans.factory.support.BeanDefinitionBuilder;
 import org.springframework.beans.factory.support.BeanDefinitionReaderUtils;
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;
-import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.cloud.openfeign.OopsClientFactoryBean;
 import org.springframework.context.EnvironmentAware;
 import org.springframework.context.ResourceLoaderAware;
 import org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider;
@@ -135,7 +135,7 @@ class OopsClientsRegistrar implements ImportBeanDefinitionRegistrar, ResourceLoa
 		Set<String> basePackages;
 
 		Map<String, Object> attrs = metadata.getAnnotationAttributes(EnableOopsClients.class.getName());
-		AnnotationTypeFilter annotationTypeFilter = new AnnotationTypeFilter(FeignClient.class);
+		AnnotationTypeFilter annotationTypeFilter = new AnnotationTypeFilter(OopsClient.class);
 		final Class<?>[] clients = attrs == null ? null : (Class<?>[]) attrs.get("clients");
 		if (clients == null || clients.length == 0) {
 			scanner.addIncludeFilter(annotationTypeFilter);
@@ -168,7 +168,7 @@ class OopsClientsRegistrar implements ImportBeanDefinitionRegistrar, ResourceLoa
 							"@FeignClient can only be specified on an interface");
 
 					Map<String, Object> attributes = annotationMetadata
-							.getAnnotationAttributes(FeignClient.class.getCanonicalName());
+							.getAnnotationAttributes(OopsClient.class.getCanonicalName());
 
 					String name = getClientName(attributes);
 					registerClientConfiguration(registry, name, attributes.get("configuration"));
@@ -330,7 +330,7 @@ class OopsClientsRegistrar implements ImportBeanDefinitionRegistrar, ResourceLoa
 		}
 
 		throw new IllegalStateException(
-				"Either 'name' or 'value' must be provided in @" + FeignClient.class.getSimpleName());
+				"Either 'name' or 'value' must be provided in @" + OopsClient.class.getSimpleName());
 	}
 
 	private void registerClientConfiguration(BeanDefinitionRegistry registry, Object name, Object configuration) {
