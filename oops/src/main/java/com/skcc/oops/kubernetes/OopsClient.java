@@ -56,6 +56,10 @@ public @interface OopsClient {
 	 * @return an absolute URL or resolvable hostname (the protocol is optional).
 	 */
 	String url() default "";
+	
+	String method() default "";
+	
+	String target() default "";
 
 	/**
 	 * @return whether 404s should be decoded instead of throwing FeignExceptions

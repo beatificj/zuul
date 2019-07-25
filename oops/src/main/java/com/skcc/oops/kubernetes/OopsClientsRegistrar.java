@@ -102,6 +102,35 @@ class OopsClientsRegistrar implements ImportBeanDefinitionRegistrar, ResourceLoa
 		}
 		return path;
 	}
+	
+	static String getMethod(String method) {
+		if (StringUtils.hasText(method)) {
+			method = method.trim();
+			if (!method.startsWith("/")) {
+				method = "/" + method;
+			}
+			
+			if (!method.endsWith("/")) {
+				method = method + "/";
+			}
+		}
+		return method;
+	}
+	
+	static String getTarget(String target) {
+		if (StringUtils.hasText(target)) {
+			target = target.trim();
+			if (!target.startsWith("/")) {
+				target = "/" + target;
+			}
+			
+			if (!target.endsWith("/")) {
+				target = target + "/";
+			}
+		}
+		return target;
+	}
+	
 
 	@Override
 	public void setResourceLoader(ResourceLoader resourceLoader) {
@@ -187,7 +216,7 @@ class OopsClientsRegistrar implements ImportBeanDefinitionRegistrar, ResourceLoa
 		definition.addPropertyValue("url", getUrl(attributes));
 //		definition.addPropertyValue("path", getPath(attributes));
 //		definition.addPropertyValue("name", getName(attributes));
-		definition.addPropertyValue("path", getPath(attributes));
+		definition.addPropertyValue("path", getMethod(attributes) + getName(attributes));
 		definition.addPropertyValue("name", "books");
 		String contextId = getContextId(attributes);
 		definition.addPropertyValue("contextId", contextId);
@@ -260,7 +289,17 @@ class OopsClientsRegistrar implements ImportBeanDefinitionRegistrar, ResourceLoa
 		String path = resolve((String) attributes.get("path"));
 		return getPath(path);
 	}
-
+	
+	private String getMethod(Map<String, Object> attributes) {
+		String method = resolve((String) attributes.get("method"));
+		return getMethod(method);
+	}
+	
+	private String getTarget(Map<String, Object> attributes) {
+		String target = resolve((String) attributes.get("target"));
+		return getTarget(target);
+	}
+	
 	protected ClassPathScanningCandidateComponentProvider getScanner() {
 		return new ClassPathScanningCandidateComponentProvider(false, this.environment) {
 			@Override
