@@ -185,9 +185,10 @@ class OopsClientsRegistrar implements ImportBeanDefinitionRegistrar, ResourceLoa
 		BeanDefinitionBuilder definition = BeanDefinitionBuilder.genericBeanDefinition(OopsClientFactoryBean.class);
 		validate(attributes);
 		definition.addPropertyValue("url", getUrl(attributes));
+//		definition.addPropertyValue("path", getPath(attributes));
+//		definition.addPropertyValue("name", getName(attributes));
 		definition.addPropertyValue("path", getPath(attributes));
-		String name = getName(attributes);
-		definition.addPropertyValue("name", name);
+		definition.addPropertyValue("name", "books");
 		String contextId = getContextId(attributes);
 		definition.addPropertyValue("contextId", contextId);
 		definition.addPropertyValue("type", className);
