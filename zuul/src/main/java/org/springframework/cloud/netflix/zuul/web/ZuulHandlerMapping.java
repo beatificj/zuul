@@ -126,7 +126,7 @@ public class ZuulHandlerMapping extends AbstractUrlHandlerMapping {
 		else {
 			for (Route route : routes) {
 				this.logger.error("path[" + route.getFullPath() + "]");
-				registerHandler(route.getFullPath(), this.zuul);
+				registerHandler("/api" + route.getFullPath(), this.zuul);
 			}
 		}
 	}

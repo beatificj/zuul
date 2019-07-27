@@ -25,7 +25,7 @@ public class SimpleServiceRouteMapper implements ServiceRouteMapper {
 
 	@Override
 	public String apply(String serviceId) {
-		return "api/" + serviceId;
+		return serviceId;
 	}
 
 }
