@@ -162,7 +162,7 @@ public class DiscoveryClientRouteLocator extends SimpleRouteLocator
 				}
 			}
 			log.error("path "+ path + ", entry {}" + entry.getValue().toString());
-			values.put(path, entry.getValue());
+			values.put("/api" + path, entry.getValue());
 		}
 		return values;
 	}
