@@ -1,10 +1,9 @@
 package com.skcc.oops;
 
+import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.skcc.oops.kubernetes.OopsClient;
-
-@OopsClient(name="oops", method="mcg")
+@FeignClient(name="books")
 public interface BooksController {
 	
 	@RequestMapping("/harry")
