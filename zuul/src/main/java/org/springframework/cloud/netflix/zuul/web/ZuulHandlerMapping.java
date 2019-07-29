@@ -20,7 +20,9 @@ import java.util.Collection;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.servlet.error.ErrorController;
+import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.cloud.netflix.zuul.filters.RefreshableRouteLocator;
 import org.springframework.cloud.netflix.zuul.filters.Route;
 import org.springframework.cloud.netflix.zuul.filters.RouteLocator;
@@ -42,6 +44,9 @@ import com.netflix.zuul.context.RequestContext;
  */
 public class ZuulHandlerMapping extends AbstractUrlHandlerMapping {
 
+	@Autowired
+	DiscoveryClient discoveryClient;
+	
 	private final RouteLocator routeLocator;
 
 	private final ZuulController zuul;
@@ -104,6 +109,7 @@ public class ZuulHandlerMapping extends AbstractUrlHandlerMapping {
 		}
 		Object object = super.lookupHandler(urlPath, request);
 		this.logger.error("object [" + object + "]");
+		this.logger.error("books[" + discoveryClient.getInstances("books") + "]");
 		return object;
 	}
 
