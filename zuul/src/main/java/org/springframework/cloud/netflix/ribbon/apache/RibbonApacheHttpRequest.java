@@ -47,7 +47,7 @@ public class RibbonApacheHttpRequest extends ContextAwareRequest implements Clon
 				builder.addHeader(name, value);
 			}
 		}
-		builder.addHeader("host_rewrite", "books");
+		builder.addHeader("Host", "books:8080");
 
 		for (final String name : this.context.getParams().keySet()) {
 			final List<String> values = this.context.getParams().get(name);
