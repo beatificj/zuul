@@ -146,7 +146,7 @@ public class RibbonRoutingFilter extends ZuulFilter {
 		Object loadBalancerKey = context.get(LOAD_BALANCER_KEY);
 
 		String uri = this.helper.buildZuulRequestURI(request);
-
+		
 		// remove double slashes
 		uri = uri.replace("//", "/");
 
