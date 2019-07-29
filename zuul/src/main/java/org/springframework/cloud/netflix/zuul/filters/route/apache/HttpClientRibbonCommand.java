@@ -16,7 +16,8 @@
 
 package org.springframework.cloud.netflix.zuul.filters.route.apache;
 
-pache.RibbonApacheHttpRequest;
+import com.netflix.client.config.IClientConfig;
+
 import org.springframework.cloud.netflix.ribbon.apache.RibbonApacheHttpRequest;
 import org.springframework.cloud.netflix.ribbon.apache.RibbonApacheHttpResponse;
 import org.springframework.cloud.netflix.ribbon.apache.RibbonLoadBalancingHttpClient;
@@ -24,8 +25,6 @@ import org.springframework.cloud.netflix.ribbon.support.RibbonCommandContext;
 import org.springframework.cloud.netflix.zuul.filters.ZuulProperties;
 import org.springframework.cloud.netflix.zuul.filters.route.FallbackProvider;
 import org.springframework.cloud.netflix.zuul.filters.route.support.AbstractRibbonCommand;
-
-import com.netflix.client.config.IClientConfig;
 
 import lombok.extern.slf4j.Slf4j;
 
