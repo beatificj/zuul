@@ -38,6 +38,7 @@ public class IstioPreFilter extends ZuulFilter {
 
 	@Override
 	public Object run() throws ZuulException {
+		log.error("==============================IstioPreFilter======================");
 		RequestContext context = RequestContext.getCurrentContext();
 		try {
 			String serviceId = (String)context.get(SERVICE_ID_KEY);
