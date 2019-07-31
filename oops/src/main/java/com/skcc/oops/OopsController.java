@@ -16,8 +16,6 @@ public class OopsController {
 	@RequestMapping("/harry")
     public Book get() {
 		log.error("book[{}]", books.getClass());
-		
-		
 		return books.get();
     }
 }

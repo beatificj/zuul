@@ -52,12 +52,15 @@ import org.springframework.util.Assert;
 import org.springframework.util.ClassUtils;
 import org.springframework.util.StringUtils;
 
+import lombok.extern.slf4j.Slf4j;
+
 /**
  * @author Spencer Gibb
  * @author Jakub Narloch
  * @author Venil Noronha
  * @author Gang Li
  */
+@Slf4j
 class FeignClientsRegistrar
 		implements ImportBeanDefinitionRegistrar, ResourceLoaderAware, EnvironmentAware {
 
@@ -225,22 +228,33 @@ class FeignClientsRegistrar
 	private void registerFeignClient(BeanDefinitionRegistry registry,
 			AnnotationMetadata annotationMetadata, Map<String, Object> attributes) {
 		String className = annotationMetadata.getClassName();
+		log.error("className [{}]", className);
 		BeanDefinitionBuilder definition = BeanDefinitionBuilder
 				.genericBeanDefinition(FeignClientFactoryBean.class);
 		validate(attributes);
-		String name = getName(attributes);
-		definition.addPropertyValue("url", name + ":8080");
+		definition.addPropertyValue("url", getUrl(attributes));
+		log.error("url [{}]", getUrl(attributes));
 		definition.addPropertyValue("path", getPath(attributes));
+		log.error("path [{}]", getPath(attributes));
+		String name = getName(attributes);
+		log.error("name [{}]", name);
 		definition.addPropertyValue("name", name);
 		String contextId = getContextId(attributes);
 		definition.addPropertyValue("contextId", contextId);
+		log.error("contextId [{}]", contextId);
 		definition.addPropertyValue("type", className);
+		log.error("className [{}]", className);
 		definition.addPropertyValue("decode404", attributes.get("decode404"));
+		log.error("decode404 [{}]", attributes.get("decode404"));
 		definition.addPropertyValue("fallback", attributes.get("fallback"));
+		log.error("fallback [{}]", attributes.get("fallback"));
 		definition.addPropertyValue("fallbackFactory", attributes.get("fallbackFactory"));
+		log.error("fallbackFactory [{}]", attributes.get("fallbackFactory"));
 		definition.setAutowireMode(AbstractBeanDefinition.AUTOWIRE_BY_TYPE);
+		log.error("AutowireMode [{}]", attributes.get("AbstractBeanDefinition.AUTOWIRE_BY_TYPE"));
 
 		String alias = contextId + "FeignClient";
+		log.error("alias [{}]", alias);
 		AbstractBeanDefinition beanDefinition = definition.getBeanDefinition();
 
 		boolean primary = (Boolean) attributes.get("primary"); // has a default, won't be
