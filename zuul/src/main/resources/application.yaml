@@ -28,6 +28,9 @@ endpoints:
       #url: http://books:8080
       #serviceId: books-service
 
+zuul:
+  add-host-header: true
+
 backend:
   ribbon:
     eureka:

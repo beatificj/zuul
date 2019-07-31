@@ -180,6 +180,7 @@ public class ProxyRequestHelper {
 		Map<String, String> zuulRequestHeaders = context.getZuulRequestHeaders();
 		for (String header : zuulRequestHeaders.keySet()) {
 			if (isIncludedHeader(header)) {
+				log.error("header [" + header + "]");
 				headers.set(header, zuulRequestHeaders.get(header));
 			}
 		}
@@ -244,6 +245,7 @@ public class ProxyRequestHelper {
 		}
 		switch (name) {
 		case "host":
+			log.error("addHostHeader[" + addHostHeader + "]");
 			if (addHostHeader) {
 				return true;
 			}
