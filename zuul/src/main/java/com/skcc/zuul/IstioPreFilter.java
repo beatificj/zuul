@@ -42,7 +42,7 @@ public class IstioPreFilter extends ZuulFilter {
 			log.error("serviceId [{}]]", serviceId);
 			List<ServiceInstance> instances = discoveryClient.getInstances(serviceId);
 			log.error("instances.size [{}]]", instances.size());
-			if(instances.size() == 1) throw new RuntimeException("the number of ports of service must be only one! ServiceId[" + serviceId + "]");
+			if(instances.size() != 1) throw new RuntimeException("the number of ports of service must be only one! ServiceId[" + serviceId + "]");
 			Integer port = instances.get(0).getPort();
 			log.error("serviceId [{}], port[{}]", serviceId, port);
 			context.addZuulRequestHeader("Host", serviceId + ":" + Integer.toString(port));
