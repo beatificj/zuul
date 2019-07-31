@@ -40,16 +40,12 @@ public class IstioPreFilter extends ZuulFilter {
 	public Object run() throws ZuulException {
 		log.error("==============================IstioPreFilter======================");
 		RequestContext context = RequestContext.getCurrentContext();
-		try {
 			String serviceId = (String)context.get(SERVICE_ID_KEY);
 //			List<ServiceInstance> instances = discoveryClient.getInstances(serviceId);
 //			if(instances.size() == 1) throw new RuntimeException("the number of ports of service must be only one! ServiceId[" + serviceId + "]");
 //			Integer port = instances.get(0).getPort();
 //			log.error("serviceId [{}], port[{}]", serviceId, port);
-			context.setRouteHost(new URL(serviceId + "8080"));
-		} catch (MalformedURLException e) {
-			e.printStackTrace();
-		};
+			context.addZuulRequestHeader("Host", serviceId + ":8080");
 		
 		return null;
 	}
