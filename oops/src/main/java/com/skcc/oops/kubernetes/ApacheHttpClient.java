@@ -32,6 +32,8 @@ import org.apache.http.entity.ContentType;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.util.EntityUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.stereotype.Component;
 
 import feign.Client;
@@ -44,6 +46,9 @@ import lombok.extern.slf4j.Slf4j;
 @Component
 public class ApacheHttpClient implements Client {
 	  private static final String ACCEPT_HEADER_NAME = "Accept";
+	  
+	  @Autowired
+	  DiscoveryClient discovery;
 
 	  private final HttpClient client;
 
@@ -60,6 +65,13 @@ public class ApacheHttpClient implements Client {
 	    HttpUriRequest httpUriRequest;
 	    try {
 	    	log.error("request.url() [{}]", request.url());
+	    	
+	    	URI uri = new URIBuilder(request.url()).build();
+	    	
+	    	log.error("uri.getScheme() [{}]", uri.getScheme());
+	    	log.error("uri.getAuthority() [{}]", uri.getAuthority());
+	    	log.error("uri.getRawPath() [{}]", uri.getRawPath());
+
 	      httpUriRequest = toHttpUriRequest(request, options);
 	    } catch (URISyntaxException e) {
 	      throw new IOException("URL '" + request.url() + "' couldn't be parsed into a URI", e);
