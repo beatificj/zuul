@@ -51,27 +51,27 @@ public class IstioClient implements Client {
 		return URI.create(buffer.toString());
 	}
 
-	@Override
-	public Response execute(Request request, Request.Options options) throws IOException {
-		try {
-			URI asUri = URI.create(request.url());
-			String clientName = asUri.getHost();
-			URI uriWithoutHost = cleanUrl(request.url(), clientName);
-			FeignLoadBalancer.RibbonRequest ribbonRequest = new FeignLoadBalancer.RibbonRequest(
-					this.delegate, request, uriWithoutHost);
-
-			IClientConfig requestConfig = getClientConfig(options, clientName);
-			return lbClient(clientName)
-					.executeWithLoadBalancer(ribbonRequest, requestConfig).toResponse();
-		}
-		catch (ClientException e) {
-			IOException io = findIOException(e);
-			if (io != null) {
-				throw io;
-			}
-			throw new RuntimeException(e);
-		}
-	}
+//	@Override
+//	public Response execute(Request request, Request.Options options) throws IOException {
+//		try {
+//			URI asUri = URI.create(request.url());
+//			String clientName = asUri.getHost();
+//			URI uriWithoutHost = cleanUrl(request.url(), clientName);
+//			FeignLoadBalancer.RibbonRequest ribbonRequest = new FeignLoadBalancer.RibbonRequest(
+//					this.delegate, request, uriWithoutHost);
+//
+//			IClientConfig requestConfig = getClientConfig(options, clientName);
+//			return lbClient(clientName)
+//					.executeWithLoadBalancer(ribbonRequest, requestConfig).toResponse();
+//		}
+//		catch (ClientException e) {
+//			IOException io = findIOException(e);
+//			if (io != null) {
+//				throw io;
+//			}
+//			throw new RuntimeException(e);
+//		}
+//	}
 
 	IClientConfig getClientConfig(Request.Options options, String clientName) {
 		IClientConfig requestConfig;
