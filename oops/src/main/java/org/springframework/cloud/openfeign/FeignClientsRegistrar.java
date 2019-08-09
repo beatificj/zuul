@@ -251,7 +251,7 @@ class FeignClientsRegistrar
 		definition.addPropertyValue("fallbackFactory", attributes.get("fallbackFactory"));
 		log.error("fallbackFactory [{}]", attributes.get("fallbackFactory"));
 		definition.setAutowireMode(AbstractBeanDefinition.AUTOWIRE_BY_TYPE);
-		log.error("AutowireMode [{}]", attributes.get("AbstractBeanDefinition.AUTOWIRE_BY_TYPE"));
+		log.error("AutowireMode [{}]", AbstractBeanDefinition.AUTOWIRE_BY_TYPE);
 
 		String alias = contextId + "FeignClient";
 		log.error("alias [{}]", alias);
