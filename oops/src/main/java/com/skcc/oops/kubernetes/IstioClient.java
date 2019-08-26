@@ -44,7 +44,7 @@ import feign.Util;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-@Component
+//@Component
 public class IstioClient implements Client {
 	  private static final String ACCEPT_HEADER_NAME = "Accept";
 	  
