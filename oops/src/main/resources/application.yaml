@@ -5,3 +5,12 @@ server:
 logging:
   level: 
     ROOT : DEBUG
+    
+feign:
+  client:
+    config:
+      books:
+        loopback:
+          enabled: true
+          url: /harry
+          data: {"name":"Harry Potter","price":10000,"author":"J. K. Rowling"}
