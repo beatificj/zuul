@@ -7,10 +7,19 @@ logging:
     ROOT : DEBUG
     
 feign:
+  hystrix:
+    enabled: true
   client:
     config:
       books:
-        loopback:
-          enabled: true
-          url: /harry
-          data: {"name":"Harry Potter","price":10000,"author":"J. K. Rowling"}
+        fallback: com.skcc.oops.BooksFallback
+      
+
+hystrix:
+  command:
+    books:
+      execution:
+        isolation:
+          strategy: THREAD
+          thread:
+            timeoutInMillsecods: 1
