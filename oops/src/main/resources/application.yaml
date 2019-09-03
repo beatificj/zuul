@@ -6,20 +6,15 @@ logging:
   level: 
     ROOT : DEBUG
     
-feign:
-  hystrix:
-    enabled: true
-  client:
-    config:
-      books:
-        fallback: com.skcc.oops.BooksFallback
-      
-
-hystrix:
-  command:
-    books:
-      execution:
-        isolation:
-          strategy: THREAD
-          thread:
-            timeoutInMillsecods: 1
+#feign:
+#  hystrix:
+#    enabled: true
+#
+#hystrix:
+#  command:
+#    books:
+#      execution:
+#        isolation:
+#          strategy: THREAD
+#          thread:
+#            timeoutInMillsecods: 1
