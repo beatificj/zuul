@@ -17,10 +17,20 @@ public class OopsController {
 	@Autowired
 	BooksController books;
 	
+	@Autowired
+	AmazonController amazon;
+	
 	@RequestMapping("/harry")
     public Book get() {
 		log.error("client [{}]", client.getClass());
 		log.error("book[{}]", books.getClass());
 		return books.get();
+    }
+	
+	@RequestMapping("/amazon/harry")
+    public Book getHarry() {
+		log.error("client [{}]", client.getClass());
+		log.error("book[{}]", books.getClass());
+		return amazon.get();
     }
 }
