@@ -4,7 +4,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.sktelecom.swing.httpclient.core.extern.ExternalClient;
 
-@ExternalClient(method="hub")
+@ExternalClient(name="amazon", method="hub")
 public interface AmazonController {
 	
 	@RequestMapping("/harry")
